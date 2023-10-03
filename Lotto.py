@@ -1,9 +1,12 @@
 import random
 
+pickedNumber = []
+dict_statistic = {}
+for i in range(46):
+    dict_statistic[i] = 0
 
+def lotto():
 
-if __name__ == '__main__':
-    pickedNumber = []
     numLeft = 0
     while numLeft < 6:
         randomNum = random.randint(1, 45)
@@ -14,5 +17,21 @@ if __name__ == '__main__':
             numLeft += 1
     print("Today's Lotto Numbers are: ")
     print(pickedNumber)
+
+def statistic(numberRuns):
+    for i in range(numberRuns):
+        randNumber = random.randint(0, 45)
+        dict_statistic[randNumber] = dict_statistic[randNumber] + 1
+    return dict_statistic
+
+
+
+if __name__ == '__main__':
+    lotto()
+
+    print("Stats after 1000 runs")
+    print(statistic(1000))
+
+
 
 
