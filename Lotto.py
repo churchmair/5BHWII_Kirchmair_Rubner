@@ -1,4 +1,5 @@
 import random
+from matplotlib import pyplot as plt
 
 pickedNumber = []
 dict_statistic = {}
@@ -30,8 +31,12 @@ if __name__ == '__main__':
     lotto()
 
     print("Stats after 1000 runs")
-    print(statistic(1000))
+    print(statistic(100))
 
+    xAxis = list(dict_statistic.keys())
+    yAxis = list(dict_statistic.values())
+    plt.bar(range(len(dict_statistic)), yAxis, tick_label=xAxis)
+    plt.show()
 
 
 
