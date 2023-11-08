@@ -1,15 +1,13 @@
 import random
 
 
-
-
 def statisticsPoker(nrPlays):
     cardsPerHand = 5
     statisticDrawnHands = []
 
     for i in range(0, 10):
         statisticDrawnHands.append(0)
-        
+
     for i in range(nrPlays):
         currentHand = getHand(cardsPerHand)
 
@@ -31,7 +29,8 @@ def statisticsPoker(nrPlays):
             statisticDrawnHands[2] += 1
         elif checkOnePair(currentHand):
             statisticDrawnHands[1] += 1
-        else:statisticDrawnHands[0] += 1
+        else:
+            statisticDrawnHands[0] += 1
 
     print("Probability of Highcards: " + str(statisticDrawnHands[0] / nrPlays * 100) + "%")
     print("Probability of One Pair: " + str(statisticDrawnHands[1] / nrPlays * 100) + "%")
@@ -43,8 +42,6 @@ def statisticsPoker(nrPlays):
     print("Probability of Four Of A Kind: " + str(statisticDrawnHands[7] / nrPlays * 100) + "%")
     print("Probability of Straight Flush: " + str(statisticDrawnHands[8] / nrPlays * 100) + "%")
     print("Probability of Royal Flush: " + str(statisticDrawnHands[9] / nrPlays * 100) + "%")
-
-
 
     print(statisticDrawnHands)
 
@@ -65,11 +62,10 @@ def getHand(nrCards):
             pickedCards += 1
             currentHand_tuple.append((color, number))
 
-
     return currentHand_tuple
 
 
-def checkHand(pickedHand):
+def countCards(pickedHand):
     checkHands = []
     for i in range(0, 13):
         checkHands.append(0)
@@ -79,44 +75,45 @@ def checkHand(pickedHand):
 
 
 def checkOnePair(pickedHand):
-    currentHand = checkHand(pickedHand)
+    currentHand = countCards(pickedHand)
     currentHand.sort(key=None, reverse=True)
     if ((currentHand[0] == 2) and (currentHand[1] != 2)):
         return True
 
 
 def checkTwoPair(pickedHand):
-    currentHand = checkHand(pickedHand)
+    currentHand = countCards(pickedHand)
     currentHand.sort(key=None, reverse=True)
     if ((currentHand[0] == 2) and (currentHand[1] == 2)):
         return True
 
 
 def checkThreeOfAKind(pickedHand):
-    currentHand = checkHand(pickedHand)
+    currentHand = countCards(pickedHand)
     currentHand.sort(key=None, reverse=True)
     if ((currentHand[0] == 3) and (currentHand[1] != 2)):
         return True
 
 
 def checkFourIfAKind(pickedHand):
-    currentHand = checkHand(pickedHand)
+    currentHand = countCards(pickedHand)
     currentHand.sort(key=None, reverse=True)
     if (currentHand[0] == 4):
         return True
 
 
 def checkFullHouse(pickedHand):
-    currentHand = checkHand(pickedHand)
+    currentHand = countCards(pickedHand)
     currentHand.sort(key=None, reverse=True)
     if ((currentHand[0] == 3) and currentHand[1] == 2):
         return True
 
 
 def checkStraight(pickedHand):
-    currentHand = checkHand(pickedHand)
+    currentHand = countCards(pickedHand)
     for a in range(0, 9):
-        if ((currentHand[a] == 1) and (currentHand[a + 1] == 1) and (currentHand[a + 2] == 1) and (currentHand[a + 3] == 1) and (currentHand[a + 4] == 1)):
+        if ((currentHand[a] == 1) and (currentHand[a + 1] == 1) and (currentHand[a + 2] == 1) and (
+                currentHand[a + 3] == 1) and (currentHand[a + 4] == 1)):
             return True
 
 
@@ -136,8 +133,7 @@ def checkFlush(pickedHand):
 def checkStraightFlush(pickedHand):
     isFlush, isStraight = False, False
     checkHandsFlush = []
-    currentHand = checkHand(pickedHand)
-
+    currentHand = countCards(pickedHand)
 
     for f in range(0, 4):
         checkHandsFlush.append(0)
@@ -150,7 +146,8 @@ def checkStraightFlush(pickedHand):
         isFlush = True
 
     for a in range(0, 9):
-        if ((currentHand[a] == 1) and (currentHand[a + 1] == 1) and (currentHand[a + 2] == 1) and (currentHand[a + 3] == 1) and (currentHand[a + 4] == 1)):
+        if ((currentHand[a] == 1) and (currentHand[a + 1] == 1) and (currentHand[a + 2] == 1) and (
+                currentHand[a + 3] == 1) and (currentHand[a + 4] == 1)):
             isStraight = True
 
     if isStraight and isFlush:
@@ -158,7 +155,7 @@ def checkStraightFlush(pickedHand):
 
 
 def checkRoyalFlush(pickedHand):
-    currentHand = checkHand(pickedHand)
+    currentHand = countCards(pickedHand)
     checkHandsFlush = []
     isFlush = False
     for f in range(0, 4):
@@ -177,12 +174,5 @@ def checkRoyalFlush(pickedHand):
 
 
 if __name__ == '__main__':
-
     statisticsPoker(1000000)
-    #print(statisticDrawnHands)
-
-
-
-
-
-
+    # print(statisticDrawnHands)
