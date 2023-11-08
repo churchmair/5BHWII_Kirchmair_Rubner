@@ -31,7 +31,7 @@ if __name__ == '__main__':
     lotto()
 
     print("Stats after 1000 runs")
-    print(statistic(100))
+    print(statistic(1000000))
 
     xAxis = list(dict_statistic.keys())
     yAxis = list(dict_statistic.values())
