@@ -72,6 +72,7 @@ def countCards(pickedHand):
     for j in pickedHand:
         checkHands[j[1]] += 1
     return checkHands
+    # returns [0, 0, 0, 0 ,0, 1, 1, 0, 1, 1, 1, 0, 0 ]
 
 
 def checkOnePair(pickedHand):
@@ -111,9 +112,9 @@ def checkFullHouse(pickedHand):
 
 def checkStraight(pickedHand):
     currentHand = countCards(pickedHand)
-    for a in range(0, 9):
+    for a in range(0, 10):
         if ((currentHand[a] == 1) and (currentHand[a + 1] == 1) and (currentHand[a + 2] == 1) and (
-                currentHand[a + 3] == 1) and (currentHand[a + 4] == 1)):
+                currentHand[a + 3] == 1) and (currentHand[(a + 4) % 13] == 1)):
             return True
 
 
@@ -172,7 +173,8 @@ def checkRoyalFlush(pickedHand):
             currentHand[11] == 1) and (currentHand[12] == 1) and isFlush):
         return True
 
+def main():
+    statisticsPoker(1000000)
 
 if __name__ == '__main__':
-    statisticsPoker(1000000)
-    # print(statisticDrawnHands)
+    main()
