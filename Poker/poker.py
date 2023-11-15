@@ -1,8 +1,8 @@
 import random
+import sys
 
 
-def statisticsPoker(nrPlays):
-    cardsPerHand = 5
+def statisticsPoker(nrPlays, cardsPerHand):
     statisticDrawnHands = []
 
     for i in range(0, 10):
@@ -174,7 +174,11 @@ def checkRoyalFlush(pickedHand):
         return True
 
 def main():
-    statisticsPoker(1000000)
+    nrPlays = int(sys.argv[1])
+    cardsPerHand = int(sys.argv[2])
+    print(cardsPerHand)
+    statisticsPoker(nrPlays, cardsPerHand)
+
 
 if __name__ == '__main__':
     main()
