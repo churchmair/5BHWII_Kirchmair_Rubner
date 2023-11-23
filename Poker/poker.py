@@ -173,10 +173,10 @@ def checkRoyalFlush(pickedHand):
             currentHand[11] == 1) and (currentHand[12] == 1) and isFlush):
         return True
 
+
 def main():
     nrPlays = int(sys.argv[1])
     cardsPerHand = int(sys.argv[2])
-    print(cardsPerHand)
     statisticsPoker(nrPlays, cardsPerHand)
 
 
