@@ -76,6 +76,11 @@ class Company:
             numberEmployees += department.countEmployees()
         return numberEmployees
 
+    def countDepartmentHeads(self):
+        numberDepartmentHeads = 0
+        for department in self.departments:
+            numberDepartmentHeads += department.countDepartmentHeads()
+        return numberDepartmentHeads
     def getBiggestDepartment(self):
         depSize = 0
         for i in self.departments:
@@ -112,7 +117,8 @@ def main():
     emp5 = Employee("Ian", "Hirschhuber", "29.11.2004", False)
     emp6 = Employee("Daniel", "Kopp", "29.11.2004", False)
     dph = DepartmentHead("Oliver", "Brandstetter", "25.06.2005", False)
-    dph2 = DepartmentHead("Eva", "Bobchev", "25.06.2005", False)
+    dph3 = DepartmentHead("Eva", "Bobchev", "25.06.2005", True)
+    dph2 = DepartmentHead("Max", "Mustermann", "01.01.1999", False)
 
     company.addDepartment(dep1)
     company.addDepartment(dep2)
@@ -126,6 +132,7 @@ def main():
     dep2.addEmployee(emp4)
     dep3.addEmployee(emp5)
     dep3.addEmployee(emp6)
+    dep2.addEmployee(dph3)
 
     print("Number of employees in department " + dep1.__str__() + " is: " + str(dep1.countEmployees()))
     print("Number of employees in department " + dep2.__str__() + " is: " + str(dep2.countEmployees()))
@@ -133,6 +140,7 @@ def main():
     print("Number of Department heads in department " + dep1.__str__() + " is: " + str(dep1.countDepartmentHeads()))
     print("Number of Department heads in department " + dep2.__str__() + " is: " + str(dep2.countDepartmentHeads()))
     print("Number of Department heads in department " + dep3.__str__() + " is: " + str(dep3.countDepartmentHeads()))
+    print("Number of Department heads in company" + company.__str__() + " is: " + str(company.countDepartmentHeads()))
     print("Number of the employees in company " + company.__str__() + " is: " + str(company.countEmployee()))
     print("Department with the highest Number of employees is: " + company.getBiggestDepartment())
     print(company.getMaleFemaleRatio())
