@@ -55,7 +55,7 @@ class Department:
         return countDepartmentHeads
 
 
-class Company():
+class Company:
 
     def __init__(self, nameCompany):
         self.nameCompany = nameCompany
@@ -79,7 +79,7 @@ class Company():
     def getBiggestDepartment(self):
         depSize = 0
         for i in self.departments:
-            if i.countEmployees() > depSize:
+            if i.countEmployees() >= depSize:
                 depSize = i.countEmployees()
                 biggestDepartment = i
             else:
