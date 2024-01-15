@@ -87,8 +87,7 @@ class Company:
             if i.countEmployees() >= depSize:
                 depSize = i.countEmployees()
                 biggestDepartment = i
-            else:
-                continue
+
         return biggestDepartment.nameDepartment
 
     def getMaleFemaleRatio(self):
@@ -97,12 +96,12 @@ class Company:
             for employee in department.employees:
                 if employee.isFemale == False:
                     counterMale += 1
-                else:
-                    continue
+
         maleRatio = round((counterMale / self.countEmployee() * 100), 2)
         femaleRatio = round(100 - maleRatio, 2)
         return "in " + self.nameCompany + ": " + str(maleRatio) + "% of the employees are male and " + str(
             femaleRatio) + "% of the employees are female"
+        #return f"in {self.nameCompany} : "
 
 
 def main():
