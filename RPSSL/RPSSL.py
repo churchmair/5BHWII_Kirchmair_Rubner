@@ -19,39 +19,21 @@ def moveComputer():
 
 
 def checkWinner(moveP, moveC):
-    if(moveP == "rock" and moveC == "lizard"):
+    if((moveP == "rock" and moveC == " ") or (moveP == "rock" and moveC == "scissors")):
         return True
-    elif(moveP == "rock" and moveC == "scissors"):
-        return True
-    elif(moveP == "rock" and moveC == "rock"):
-        return None
 
-    elif(moveP == "paper" and moveC == "rock"):
+    elif((moveP == "paper" and moveC == "rock") or (moveP == "paper" and moveC == "spock")):
         return True
-    elif(moveP == "paper" and moveC == "spock"):
-        return True
-    elif(moveP == "paper" and moveC == "paper"):
-        return None
 
-    elif(moveP == "scissors" and moveC == "paper"):
+    elif((moveP == "scissors" and moveC == "paper") or (moveP == "scissors" and moveC == "lizard")):
         return True
-    elif(moveP == "scissors" and moveC == "lizard"):
-        return True
-    elif(moveP == "scissors" and moveC == "scissors"):
-        return None
 
-    elif(moveP == "spock" and moveC == "rock"):
+    elif((moveP == "spock" and moveC == "rock") or (moveP == "spock" and moveC == "scissors")):
         return True
-    elif(moveP == "spock" and moveC == "scissors"):
-        return True
-    elif(moveP == "spock" and moveC == "spock"):
-        return None
 
-    elif(moveP == "lizard" and moveC == "spock"):
+    elif((moveP == "lizard" and moveC == "spock") or (moveP == "lizard" and moveC == "paper")):
         return True
-    elif(moveP == "lizard" and moveC == "paper"):
-        return True
-    elif(moveP == "lizard" and moveC == "lizard"):
+    elif(moveP == moveC):
         return None
     else:
         return False

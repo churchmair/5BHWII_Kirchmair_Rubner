@@ -1,5 +1,7 @@
+import functools
 import random
 import sys
+import time
 
 
 def statisticsPoker(nrPlays, cardsPerHand):
@@ -173,11 +175,30 @@ def checkRoyalFlush(pickedHand):
             currentHand[11] == 1) and (currentHand[12] == 1) and isFlush):
         return True
 
+def timer(func):
+    @functools.wraps(func)
+    def wrapper_timer(*args, **kwargs):
+        start_time = time.perf_counter()  # 1
+        value = func(*args, **kwargs)
+        end_time = time.perf_counter()  # 2
+        run_time = end_time - start_time  # 3
+        print(f"Finished {func.__name__!r} in {run_time:.4f} secs")
+        return value
+
+    return wrapper_timer
+
+@timer
+def runGames(nrPlays, cardsPerHand):
+    statisticsPoker(nrPlays, cardsPerHand)
 
 def main():
     nrPlays = int(sys.argv[1])
     cardsPerHand = int(sys.argv[2])
-    statisticsPoker(nrPlays, cardsPerHand)
+    #so würds normalerweise gehen
+    #statisticsPoker(nrPlays, cardsPerHand)
+    runGames(nrPlays, cardsPerHand)
+
+
 
 
 if __name__ == '__main__':
