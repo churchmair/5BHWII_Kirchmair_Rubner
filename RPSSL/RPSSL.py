@@ -1,5 +1,8 @@
+import os
 import random
-
+import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 def movePlayer():
     correctMove = False
@@ -8,13 +11,12 @@ def movePlayer():
         pickPlayer = input("make a move: ")
         for dictPicks in possiblePicks.values():
             if(pickPlayer == dictPicks):
-                statsPicks[pickPlayer] +=1
+                stats[pickPlayer] += 1
                 return pickPlayer
 
 
 def moveComputer():
     pickComputer = random.randrange(5)
-    statsPicks[possiblePicks[pickComputer]] += 1
     return possiblePicks[pickComputer]
 
 
@@ -39,45 +41,61 @@ def checkWinner(moveP, moveC):
         return False
 
 
-def stats(winner):
+def statistics(winner):
     if (winner):
-        statsWins["player"] += 1
+        stats["player"] += 1
     elif (winner == False):
-        statsWins["computer"] += 1
+        stats["computer"] += 1
     else:
-        statsWins["draw"] += 1
-    return statsWins
+        stats["draw"] += 1
+    return stats
 
 
-if __name__ == "__main__":
-    statsWins = {"player": 0, "computer": 0, "draw": 0}
-    statsPicks = {"rock": 0, "paper": 0, "scissors": 0, "spock": 0, "lizard": 0}
-    possiblePicks = {0: "rock", 1: "paper", 2: "scissors", 3: "spock", 4: "lizard"}
+# statsWins = {"player": 0, "computer": 0, "draw": 0}
+# statsPicks = {"rock": 0, "paper": 0, "scissors": 0, "spock": 0, "lizard": 0}
+
+
+def game():
     anotherRound = True
 
     while True:
         print("Menu: ")
         print("play ... p")
         print("stats ... s")
+        print("save stats ... a")
         choice = input("Choose action: ")
-        if(choice == "p"):
-            while(anotherRound):
+        if (choice == "p"):
+            while (anotherRound):
                 moveP = movePlayer()
                 moveC = moveComputer()
                 print("Computer picked: " + str(moveC))
 
                 winner = checkWinner(moveP, moveC)
-                stats(winner)
+                statistics(winner)
 
                 choice = input(print("Do you want to play again? [y, n]"))
-                if(choice == "n"):
+                if (choice == "n"):
                     anotherRound = False
                 else:
                     anotherRound = True
-        elif(choice == "s"):
+        elif (choice == "s"):
             print("#################")
-            print("Statistic: Wins")
-            print(statsWins)
-            print("Statistic: Picks")
-            print(statsPicks)
+            print("Statistic:")
+            print(stats)
             print("#################")
+
+        elif (choice == "a"):
+            requests.post(os.getenv("SERVER_URL") + "/saveStats", json=stats)
+            print("stats saved")
+
+
+if __name__ == "__main__":
+    keys = ["player", "computer", "draw", "rock", "paper", "scissors", "spock", "lizard"]
+
+    stats = requests.get(os.getenv("SERVER_URL") + "/getStats").json()
+    stats = {k: v for (k, v) in zip(keys, stats)}
+
+    print("aktuelle Stats: " + str(stats))
+    possiblePicks = {0: "rock", 1: "paper", 2: "scissors", 3: "spock", 4: "lizard"}
+
+    game()

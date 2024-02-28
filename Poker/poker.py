@@ -184,7 +184,6 @@ def timer(func):
         run_time = end_time - start_time  # 3
         print(f"Finished {func.__name__!r} in {run_time:.4f} secs")
         return value
-
     return wrapper_timer
 
 @timer
@@ -194,11 +193,11 @@ def runGames(nrPlays, cardsPerHand):
 def main():
     nrPlays = int(sys.argv[1])
     cardsPerHand = int(sys.argv[2])
+
     #so würds normalerweise gehen
     #statisticsPoker(nrPlays, cardsPerHand)
+
     runGames(nrPlays, cardsPerHand)
-
-
 
 
 if __name__ == '__main__':
