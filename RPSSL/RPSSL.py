@@ -51,10 +51,6 @@ def statistics(winner):
     return stats
 
 
-# statsWins = {"player": 0, "computer": 0, "draw": 0}
-# statsPicks = {"rock": 0, "paper": 0, "scissors": 0, "spock": 0, "lizard": 0}
-
-
 def game():
     anotherRound = True
 
@@ -91,9 +87,9 @@ def game():
 
 if __name__ == "__main__":
     keys = ["player", "computer", "draw", "rock", "paper", "scissors", "spock", "lizard"]
+    values = requests.get(os.getenv("SERVER_URL") + "/getStats").json()
 
-    stats = requests.get(os.getenv("SERVER_URL") + "/getStats").json()
-    stats = {k: v for (k, v) in zip(keys, stats)}
+    stats = {k: v for (k, v) in zip(keys, values)}
 
     print("aktuelle Stats: " + str(stats))
     possiblePicks = {0: "rock", 1: "paper", 2: "scissors", 3: "spock", 4: "lizard"}
