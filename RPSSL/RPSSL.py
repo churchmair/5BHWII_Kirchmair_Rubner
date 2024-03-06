@@ -43,10 +43,13 @@ def checkWinner(moveP, moveC):
 
 def statistics(winner):
     if (winner):
+        print("Player wins")
         stats["player"] += 1
     elif (winner == False):
+        print("Computer wins")
         stats["computer"] += 1
     else:
+        print("Draw")
         stats["draw"] += 1
     return stats
 
