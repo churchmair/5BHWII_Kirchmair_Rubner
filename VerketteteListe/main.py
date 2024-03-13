@@ -13,9 +13,6 @@ if __name__ == '__main__':
     print("length:")
     print(ll.getLength())
 
-    print("average:")
-    print(f"average: {ll.calcAverage()}")
-
     # use the iterator
     print("iterator:")
     for node in ll:

@@ -38,12 +38,3 @@ class LinkedList:
             yield cur_node.value
             cur_node = cur_node.next
 
-    def calcAverage(self):
-        cur_node = self.head
-        sum = 0
-        while cur_node:
-            sum += cur_node.value
-            cur_node = cur_node.next
-        calc_average = sum / self.getLength()
-        print(f"sum: {sum} at a lengt of: {self.getLength()}")
-        return calc_average
