@@ -179,6 +179,8 @@ def timer(func):
     @functools.wraps(func)
     def wrapper_timer(*args, **kwargs):
         start_time = time.perf_counter()  # 1
+        #with open("test.txt", "a") as file:
+        #    file.write(func.__name__)
         value = func(*args, **kwargs)
         end_time = time.perf_counter()  # 2
         run_time = end_time - start_time  # 3

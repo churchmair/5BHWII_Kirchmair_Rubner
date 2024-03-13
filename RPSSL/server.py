@@ -7,8 +7,6 @@ app = Flask(__name__)
 load_dotenv()
 
 
-# with open("stats.json", "w") as outfile:
-# json.dump(stats, outfile)
 connection = sqlite3.connect(os.getenv("DB_URL"), check_same_thread=False)
 
 cursor = connection.cursor()
@@ -32,7 +30,6 @@ def saveStats():
 def getStats():
     cursor.execute("SELECT * FROM statisticsRPSSL LIMIT 1")
     stats = cursor.fetchone()
-    print(stats)
     return jsonify(stats)
 
 if __name__ == '__main__':
